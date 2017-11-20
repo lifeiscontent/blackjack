@@ -1,0 +1,54 @@
+{
+  "name": "blackjack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:typescript && npm run tslint",
+    "build:typescript": "tsc",
+    "debug": "npm run build && npm run debug:watch",
+    "debug:watch":
+      "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch:typescript\" \"npm run debug:serve\"",
+    "debug:serve": "nodemon --inspect dist/index.js",
+    "serve": "nodemon dist/index.js",
+    "start": "npm run build && npm run watch",
+    "test": "jest --forceExit",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "watch":
+      "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch:typescript\" \"npm run serve\"",
+    "watch:typescript": "tsc -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.json"
+      }
+    },
+    "moduleFileExtensions": ["ts", "js"],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "./node_modules/ts-jest/preprocessor.js"
+    },
+    "testMatch": ["**/test/**/*.test.(ts|js)"],
+    "testEnvironment": "node"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "jest": "^21.2.1",
+    "typescript": "2.6.1"
+  },
+  "devDependencies": {
+    "@types/jest": "21.1.6",
+    "@types/node": "8.0.53",
+    "concurrently": "3.5.0",
+    "nodemon": "1.12.1",
+    "ts-jest": "21.2.3",
+    "tslint": "5.8.0"
+  }
+}
